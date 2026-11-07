@@ -1,0 +1,14 @@
+[package]
+name = "loso-inject"
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+homepage.workspace = true
+description = "A compile-time dependency injection framework for Rust with zero runtime overhead"
+keywords = ["dependency-injection", "di", "ioc", "compile-time", "type-safe"]
+categories = ["development-tools", "rust-patterns"]
+
+[dependencies]
+anyhow.workspace = true
+loso-macros = { workspace = true, features = ["inject"] }

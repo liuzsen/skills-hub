@@ -1,0 +1,18 @@
+[package]
+name = "loso-repository"
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+description = "Composable repository and transaction contracts"
+readme = false
+homepage.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+loso-entity.workspace = true
+loso-biz.workspace = true
+scoped-futures = "0.1.4"
+
+[dev-dependencies]
+tokio = { version = "1.49.0", features = ["macros", "rt"] }

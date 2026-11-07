@@ -1,0 +1,47 @@
+[package]
+name = "loso-macros"
+version = "0.1.0"
+edition = "2024"
+repository = "https://github.com/liuzsen/lolibaso"
+description = "lolibaso 的过程宏 crate"
+authors = ["liuzsen"]
+license = "Apache-2.0"
+homepage.workspace = true
+
+[lib]
+proc-macro = true
+
+[features]
+default = []
+entity = ["_paths"]
+inject = [
+    "_paths",
+    "dep:proc-macro2",
+    "dep:quote",
+    "dep:syn",
+    "syn/full",
+    "syn/visit",
+]
+http = ["_paths", "dep:convert_case"]
+# 内部共享能力：只有需要解析依赖 crate 路径的宏才启用。
+_paths = ["dep:proc-macro-crate", "dep:proc-macro2", "dep:quote", "dep:syn"]
+
+[dependencies]
+proc-macro-crate = { version = "3", optional = true }
+convert_case = { version = "0.8.0", optional = true }
+proc-macro2 = { version = "1", optional = true }
+quote = { version = "1", optional = true }
+syn = { version = "2.0.55", default-features = false, optional = true, features = [
+    "derive",
+    "clone-impls",
+    "parsing",
+    "printing",
+    "proc-macro",
+] }
+
+[dev-dependencies]
+# 测试将生成结果解析为 syn::File；生产中的 entity/http 不需要 full AST。
+syn = { version = "2.0.55", default-features = false, features = [
+    "full",
+    "parsing",
+] }

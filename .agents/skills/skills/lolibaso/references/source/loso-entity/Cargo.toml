@@ -1,0 +1,12 @@
+[package]
+name = "loso-entity"
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+description = "Entity identity and restoration contracts"
+readme = false
+homepage.workspace = true
+
+[dependencies]
+loso-macros = { workspace = true, features = ["entity"] }

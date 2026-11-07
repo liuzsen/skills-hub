@@ -1,0 +1,13 @@
+{
+  "repository": "git@github.com:liuzsen/lolibaso.git",
+  "commit": "34dc504fb4eb5139014985f28617f82aa8cf22e4",
+  "manifests": [
+    "Cargo.toml",
+    "loso-biz/Cargo.toml",
+    "loso-entity/Cargo.toml",
+    "loso-http/Cargo.toml",
+    "loso-inject/Cargo.toml",
+    "loso-macros/Cargo.toml",
+    "loso-repository/Cargo.toml"
+  ]
+}

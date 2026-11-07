@@ -1,0 +1,66 @@
+[package]
+name = "lolibaso"
+description = "面向整洁架构的 Rust application toolkit"
+keywords = ["clean-architecture", "toolkit", "backend", "architecture", "web"]
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+
+[[example]]
+name = "entity"
+required-features = ["entity"]
+
+[[example]]
+name = "http_error"
+required-features = ["http"]
+
+[[example]]
+name = "inject"
+required-features = ["inject"]
+
+[workspace]
+resolver = "3"
+members = [
+    "loso-entity",
+    "loso-biz",
+    "loso-repository",
+    "loso-http",
+    "loso-macros",
+    "loso-inject",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+repository = "https://github.com/liuzsen/lolibaso"
+license = "Apache-2.0"
+homepage = "https://github.com/liuzsen/lolibaso"
+authors = ["liuzsen"]
+keywords = ["clean-architecture", "toolkit", "backend", "architecture", "web"]
+categories = ["rust-patterns", "web-programming"]
+readme = false
+
+[workspace.dependencies]
+loso-entity = { path = "loso-entity", version = "0.1.0" }
+anyhow = "1.0.98"
+loso-biz = { path = "loso-biz", version = "0.1.0" }
+loso-repository = { path = "loso-repository", version = "0.1.0" }
+loso-http = { path = "loso-http", version = "0.1.0" }
+loso-inject = { path = "loso-inject", version = "0.1.0" }
+loso-macros = { path = "loso-macros", version = "0.1.0", default-features = false }
+
+[dependencies]
+loso-entity = { workspace = true, optional = true }
+loso-biz = { workspace = true, optional = true }
+loso-repository = { workspace = true, optional = true }
+loso-http = { workspace = true, optional = true }
+loso-inject = { workspace = true, optional = true }
+
+[features]
+default = []
+entity = ["dep:loso-entity"]
+biz = ["dep:loso-biz"]
+repository = ["dep:loso-repository", "entity", "biz"]
+http = ["dep:loso-http"]
+inject = ["dep:loso-inject"]
+full = ["entity", "biz", "repository", "http", "inject"]
