@@ -1,0 +1,8 @@
+.agents/
+.local/
+node_modules/
+dist/
+.wrangler/
+pnpm-lock.yaml
+skills-lock.json
+worker/

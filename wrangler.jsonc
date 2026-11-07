@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "skills-hub",
+  "main": "worker/build/index.js",
+  "compatibility_date": "2026-11-07",
+  "build": {
+    "command": "pnpm build:worker",
+    "watch_dir": ["worker/src", "worker/Cargo.toml", "worker/Cargo.lock"],
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api", "/api/*"],
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 },
+  },
+  "dev": { "ip": "127.0.0.1", "port": 8787 },
+}
