@@ -1,3 +1,11 @@
+[workspace]
+members = ["crates/hub-domain", "crates/hub-application", "crates/hub-http", "crates/hub-d1", "crates/hub-r2"]
+resolver = "3"
+
+[features]
+default = []
+local-mail = ["hub-d1/local-mail"]
+
 [package]
 name = "skills-worker"
 version = "0.1.0"
@@ -7,5 +15,11 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
+anyhow = "1.0.104"
+hub-application = { version = "0.1.0", path = "crates/hub-application" }
+hub-d1 = { version = "0.1.0", path = "crates/hub-d1" }
+hub-http = { version = "0.1.0", path = "crates/hub-http" }
+hub-r2 = { version = "0.1.0", path = "crates/hub-r2" }
 serde = { version = "1.0.229", features = ["derive"] }
+web-sys = { version = "0.3.107", features = ["Crypto", "WorkerGlobalScope"] }
 worker = "0.8.7"
