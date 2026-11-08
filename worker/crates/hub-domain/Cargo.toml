@@ -1,0 +1,7 @@
+[package]
+name = "hub-domain"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lolibaso = { git = "ssh://git@github.com/liuzsen/lolibaso.git", rev = "34dc504fb4eb5139014985f28617f82aa8cf22e4", version = "0.1.0", default-features = false, features = ["entity"] }

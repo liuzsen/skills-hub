@@ -5,7 +5,12 @@
   "compatibility_date": "2026-11-07",
   "build": {
     "command": "pnpm build:worker",
-    "watch_dir": ["worker/src", "worker/Cargo.toml", "worker/Cargo.lock"],
+    "watch_dir": [
+      "worker/src",
+      "worker/crates",
+      "worker/Cargo.toml",
+      "worker/Cargo.lock",
+    ],
   },
   "assets": {
     "directory": "./dist",
@@ -18,4 +23,53 @@
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "dev": { "ip": "127.0.0.1", "port": 8787 },
+  "vars": {
+    "APP_ENV": "disabled",
+    "MAIL_TRANSPORT": "disabled",
+    "APP_ORIGIN": "https://skills.zsen.top",
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "skills-hub-local",
+      "migrations_dir": "worker/crates/hub-d1/migrations",
+      "remote": false,
+    },
+  ],
+  "r2_buckets": [
+    { "binding": "SKILLS", "bucket_name": "skills-hub-local", "remote": false },
+  ],
+  "env": {
+    "local": {
+      "build": {
+        "command": "pnpm build:worker:local",
+        "watch_dir": [
+          "worker/src",
+          "worker/crates",
+          "worker/Cargo.toml",
+          "worker/Cargo.lock",
+        ],
+      },
+      "vars": {
+        "APP_ENV": "local",
+        "MAIL_TRANSPORT": "d1-outbox",
+        "APP_ORIGIN": "http://127.0.0.1:8787",
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "skills-hub-local",
+          "migrations_dir": "worker/crates/hub-d1/migrations",
+          "remote": false,
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "SKILLS",
+          "bucket_name": "skills-hub-local",
+          "remote": false,
+        },
+      ],
+    },
+  },
 }

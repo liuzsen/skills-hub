@@ -1,0 +1,12 @@
+[package]
+name = "hub-application"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+hex = "0.4.3"
+hmac = "0.12"
+hub-domain = { version = "0.1.0", path = "../hub-domain" }
+lolibaso = { git = "ssh://git@github.com/liuzsen/lolibaso.git", rev = "34dc504fb4eb5139014985f28617f82aa8cf22e4", version = "0.1.0", default-features = false, features = ["biz"] }
+sha2 = "0.10"
